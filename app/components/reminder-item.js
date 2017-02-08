@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  tagName: 'article'
+  tagName: 'article',
   classNames: ['reminder-item']
 });
