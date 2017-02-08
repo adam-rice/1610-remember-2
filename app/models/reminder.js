@@ -2,6 +2,8 @@ import DS from 'ember-data'
 
 export default DS.Model.extend({
   title: DS.attr('string'),
-  body: DS.attr('string'),
-  reminder_id: DS.attr('number')
+  date: DS.attr('date'),
+  notes: DS.attr('string'),
+  pinned:
+  DS.attr('boolean')
 })
