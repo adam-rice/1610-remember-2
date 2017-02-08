@@ -1,5 +1,7 @@
 import DS from 'ember-data'
 
 export default DS.Model.extend({
-  text: DS.attr('string')
+  title: DS.attr('string'),
+  body: DS.attr('string'),
+  reminder_id: DS.attr('number')
 })
