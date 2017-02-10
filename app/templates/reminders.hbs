@@ -1,4 +1,7 @@
-{{add-reminder}}
+<!-- {{add-reminder}} -->
+
+{{outlet}}
+
 {{#each model as |reminder|}}
   <ul class='reminders-list'>
     <li>
@@ -8,4 +11,7 @@
     </li>
   </ul>
 {{/each}}
-{{outlet}}
+
+{{#link-to "reminders.new"}}
+  <button>Create New Reminder</button>
+{{/link-to}}
