@@ -1,1 +1,8 @@
-{{outlet}}
+<!-- {{outlet}} -->
+
+<form {{action 'createReminder' on='submit'}}>
+  <label>Title{{input value=title}}</label>
+  <label>Date{{input value=date}}</label>
+  <label>Notes{{input value=notes}}</label>
+  <button>Add</button>
+</form>
