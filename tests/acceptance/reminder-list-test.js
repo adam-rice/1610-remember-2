@@ -1,4 +1,4 @@
-import { test, skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'remember/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | reminders list');
@@ -30,13 +30,13 @@ test('clicking the Add reminder button renders a new reminder', function(assert)
     server.createList('reminder', 5);
 
     visit('/reminders');
-    click('.spec-create-new-reminder-btn');
+    click('.spec-view-form');
     andThen(function() {
       assert.equal(currentURL(), '/reminders/new');
     });
 
-    click('.spec-save-reminder-btn');
+    click('.spec-add-new');
     andThen(function(){
-      assert.equal(find('.spec-reminder-item').length, 1)
-    })
+      assert.equal(find('.spec-reminder-item').length, 6);
+    });
   });
