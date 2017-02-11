@@ -12,12 +12,10 @@ export default Ember.Component.extend({
 
   actions: {
     createReminder() {
-      const title = this.getProperties('title');
-      // const date = this.getProperties('date');
-      // const notes = this.getProperties('notes');
-      this.get('store').createRecord('title', title).save()
+      const reminder = this.getProperties('title', 'date', 'notes');
+      this.get('store').createRecord('reminder', reminder).save()
       .then(() => {
-        this.setProperties({title: ''});
+        this.setProperties({title: '', date: '', notes: ''});
       });
     }
   }
