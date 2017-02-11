@@ -1,6 +1,6 @@
-<form {{ action 'createReminder' on='submit' }}>
+<form {{action 'createReminder' on='submit'}}>
   <label>Title:{{input value=title}}</label>
-  <label>Date:{{input value=date}}</label>
+  <label>Date:{{input value=date type='date'}}</label>
   <label>Notes:{{input value=notes}}</label>
-  <button>Add</button>
+  <button class='spec-add-new'>Add</button>
 </form>
