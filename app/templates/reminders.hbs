@@ -1,15 +1,24 @@
-{{#each model as |reminder|}}
-  <ul class='reminders-list'>
-    <li>
-      {{#link-to 'reminders.reminder' reminder.id}}
-        <h3 class='spec-reminder-item'>{{reminder.title}}</h3>
-      {{/link-to}}
-    </li>
-  </ul>
-{{/each}}
+<section>
+
+{{#if model}}
+  {{#each model as |reminder|}}
+    <ul class='reminders-list'>
+      <li>
+        {{#link-to 'reminders.reminder' reminder.id}}
+          <h3 class='spec-reminder-item'>{{reminder.title}}</h3>
+        {{/link-to}}
+      </li>
+    </ul>
+  {{/each}}
+
+  {{else}}
+    <p>Please add your first reminder!</p>
+{{/if}}
 
 {{#link-to "reminders.new"}}
   <button class='spec-view-form'>Create New Reminder</button>
 {{/link-to}}
+
+</section>
 
 {{outlet}}
