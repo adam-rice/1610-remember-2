@@ -27,16 +27,38 @@ test('clicking on an individual item', function(assert) {
 });
 
 test('clicking the Add reminder button renders a new reminder', function(assert){
-    server.createList('reminder', 5);
+  server.createList('reminder', 5);
 
-    visit('/reminders');
-    click('.spec-view-form');
-    andThen(function() {
-      assert.equal(currentURL(), '/reminders/new');
-    });
-
-    click('.spec-add-new');
-    andThen(function(){
-      assert.equal(find('.spec-reminder-item').length, 6);
-    });
+  visit('/reminders');
+  click('.spec-view-form');
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/new');
   });
+
+  click('.spec-add-new');
+  andThen(function(){
+    assert.equal(find('.spec-reminder-item').length, 6);
+  });
+});
+
+test('if there is a reminder there should be no "Please add your first reminder" element', function(assert){
+  server.createList('reminder', 1);
+
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders');
+    assert.equal(find('.spec-no-reminder-status').length, 0);
+  });
+});
+
+test('if there are no reminders there should be text "Please add your first reminder"', function(assert){
+  server.createList('reminder', 0);
+
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders');
+    assert.equal(find('.spec-no-reminder-status').text().trim(), 'Please add your first reminder!');
+  });
+});
