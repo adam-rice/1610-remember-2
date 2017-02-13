@@ -62,3 +62,13 @@ test('if there are no reminders there should be text "Please add your first remi
     assert.equal(find('.spec-no-reminder-status').text().trim(), 'Please add your first reminder!');
   });
 });
+
+test('if edit is selected a form is rendered where the user can update their reminder', function(assert){
+  server.createList('reminder', 1);
+
+  visit('/reminders/1/edit');
+
+  andThen(function() {
+    assert.equal(find('form').length, 1);
+  });
+});
