@@ -1,6 +1,6 @@
-<form {{action 'editReminder' on='submit'}}>
-  <label>Title:{{input value=title}}</label>
-  <label>Date:{{input value=date type='date'}}</label>
-  <label>Notes:{{input value=notes}}</label>
+<form {{action 'editReminder' model on='submit'}}>
+  <label>Title:{{input value=model.title}}</label>
+  <label>Date:{{input value=model.date type='date'}}</label>
+  <label>Notes:{{input value=model.notes}}</label>
   <button class='spec-edit-btn'>Submit</button>
 </form>
