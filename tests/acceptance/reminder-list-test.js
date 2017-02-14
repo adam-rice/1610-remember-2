@@ -72,3 +72,40 @@ test('if edit is selected a form is rendered where the user can update their rem
     assert.equal(find('form').length, 1);
   });
 });
+
+test('user should be able to edit the reminder', function(assert) {
+  visit('/');
+  click('.spec-view-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+    fillIn('.new-reminder-title', 'Gorilla');
+    fillIn('.new-reminder-note', 'Wheelbarrel');
+    click('.spec-add-new');
+  });
+
+  click('.spec-reminder-item:first');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1');
+    click('.spec-edit-reminder');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1/edit');
+  });
+
+  andThen(function(){
+    fillIn('.edit-reminder-title', 'Jellyfish');
+    fillIn('.edit-reminder-note', 'Shovel');
+    click('.spec-edit-save-btn');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(), '/reminders');
+  });
+
+  andThen(function(){
+    assert.equal(find('.spec-reminder-item:first').text().trim(), 'Jellyfish');
+  });
+});
