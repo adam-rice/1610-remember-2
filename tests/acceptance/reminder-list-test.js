@@ -30,7 +30,7 @@ test('clicking the Add reminder button renders a new reminder', function(assert)
   server.createList('reminder', 5);
 
   visit('/reminders');
-  click('.spec-view-form');
+  click('.spec-add-new-form');
   andThen(function() {
     assert.equal(currentURL(), '/reminders/new');
   });
@@ -73,9 +73,29 @@ test('if edit is selected a form is rendered where the user can update their rem
   });
 });
 
+test('a new reminder is rendered to the list when created', function(assert) {
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+    fillIn('.new-reminder-title', 'Dinasaur');
+    fillIn('.new-reminder-note', 'Can eat meat.');
+    click('.spec-add-new');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(), '/reminders');
+  });
+
+  andThen(function(){
+    assert.equal(find('.spec-reminder-item:first').text().trim(), 'Dinasaur');
+  });
+});
+
 test('user should be able to edit the reminder', function(assert) {
   visit('/');
-  click('.spec-view-form');
+  click('.spec-add-new-form');
 
   andThen(function(){
     assert.equal(currentURL(),'/reminders/new');
