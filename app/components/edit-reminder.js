@@ -7,11 +7,11 @@ export default Ember.Component.extend({
       model.save();
       this.sendAction();
     },
-    rollbackChanges() {
-      // if(model.get('hasDirtyAttributes')) {
-      //   model.rollbackChanges();
-      // }
-      console.log('boom');
+    rollbackChanges(model) {
+      if(model.get('hasDirtyAttributes')) {
+        model.rollbackAttributes();
+      }
+      this.sendAction();
     }
   }
 });
