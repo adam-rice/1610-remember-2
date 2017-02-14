@@ -1,0 +1,6 @@
+<form {{action 'editReminder' model on='submit'}}>
+  <label>Title:{{input class='edit-reminder-title' value=model.title}}</label>
+  <label>Date:{{input class='edit-reminder-date' value=model.date type='date'}}</label>
+  <label>Notes:{{input class='edit-reminder-note' value=model.notes}}</label>
+  <button class='spec-edit-save-btn'>Submit</button>
+</form>

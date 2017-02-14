@@ -17,6 +17,7 @@ export default Ember.Component.extend({
       this.get('store').createRecord('reminder', reminder).save()
       .then(() => {
         this.setProperties({title: '', date: '', notes: ''});
+        this.sendAction();
       });
     }
   }
