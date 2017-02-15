@@ -129,3 +129,32 @@ test('user should be able to edit the reminder', function(assert) {
     assert.equal(find('.spec-reminder-item:first').text().trim(), 'Jellyfish');
   });
 });
+
+test('clicking the Undo button in the edit form reverts to the original', function(assert){
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+    fillIn('.new-reminder-title', 'Megatron');
+    fillIn('.new-reminder-note', 'I am evil');
+    click('.spec-add-new');
+    click('.spec-reminder-item:first');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1');
+    click('.spec-edit-reminder');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1/edit');
+    fillIn('.edit-reminder-title', 'HotRod');
+    click('.spec-edit-destroy-btn');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders');
+    assert.equal(find('.spec-reminder-item:first').text().trim(), 'Megatron');
+  });
+});
