@@ -158,3 +158,25 @@ test('clicking the Undo button in the edit form reverts to the original', functi
     assert.equal(find('.spec-reminder-item:first').text().trim(), 'Megatron');
   });
 });
+
+test('User is alerted that they have unsaved changes when view the edit form', function(assert){
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+    fillIn('.new-reminder-title', 'Blue Whale');
+    click('.spec-add-new');
+    click('.spec-reminder-item:first');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1');
+    click('.spec-edit-reminder');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1/edit');
+    assert.equal(find('#spec-edit-status').text().trim(), 'You have unsaved changes!');
+  });
+});
