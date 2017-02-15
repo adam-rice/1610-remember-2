@@ -4,5 +4,6 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   date: DS.attr('date'),
   notes: DS.attr('string'),
-  pinned: DS.attr('boolean', { defaultValue: false })
+  pinned: DS.attr('boolean', { defaultValue: false }),
+  edit: DS.attr('boolean')
 });
