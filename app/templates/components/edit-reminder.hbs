@@ -5,3 +5,7 @@
   <button class='spec-edit-save-btn'>Submit</button>
   <button {{action 'rollbackChanges' model}} class='spec-edit-destroy-btn'>Undo</button>
 </form>
+
+{{#if edit}}
+  <p id="spec-edit-status">You have unsaved changes!</p>
+{{/if}}
