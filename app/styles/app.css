@@ -9,3 +9,7 @@ form {
 #spec-edit-status {
   color: pink;
 }
+
+.unsaved {
+  background-color: #F05A76;
+}
