@@ -7,6 +7,7 @@
         {{#link-to 'reminders.reminder' reminder.id}}
           <h3 class='spec-reminder-item'>{{reminder.title}}</h3>
         {{/link-to}}
+        <button class='spec-remove-reminder' {{action 'remove' reminder.id}}>X</button>
       </li>
     </ul>
   {{/each}}

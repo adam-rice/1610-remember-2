@@ -5,3 +5,8 @@
 form {
   margin-top: 30px;
 }
+
+.spec-remove-reminder, .spec-reminder-item {
+  display: inline-block;
+  margin-right: 10px;
+}
