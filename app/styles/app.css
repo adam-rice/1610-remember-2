@@ -13,3 +13,8 @@ form {
 .unsaved {
   background-color: #F48A9E;
 }
+
+.spec-remove-reminder, .spec-reminder-item {
+  display: inline-block;
+  margin-right: 10px;
+}
