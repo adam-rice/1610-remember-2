@@ -7,9 +7,9 @@ form {
 }
 
 #spec-edit-status {
-  color: pink;
+  color: red;
 }
 
 .unsaved {
-  background-color: #F05A76;
+  background-color: #F48A9E;
 }
