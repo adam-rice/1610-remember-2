@@ -158,3 +158,60 @@ test('clicking the Undo button in the edit form reverts to the original', functi
     assert.equal(find('.spec-reminder-item:first').text().trim(), 'Megatron');
   });
 });
+
+test('User is instructed to save their changes when viewing the edit form', function(assert){
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+    fillIn('.new-reminder-title', 'Blue Whale');
+    click('.spec-add-new');
+    click('.spec-reminder-item:first');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1');
+    click('.spec-edit-reminder');
+  });
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1/edit');
+    assert.equal(find('#spec-edit-status').text().trim(), 'Do not forget to save your changes!');
+  });
+});
+
+test('A visual cue lets the user know they have unsaved changes when editing a specific reminder', function(assert) {
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+  });
+
+  fillIn('.new-reminder-title', 'Learn Ember');
+  click('.spec-add-new');
+  click('.spec-reminder-item:first');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/1');
+  });
+
+  click('.spec-edit-reminder');
+
+  andThen(function() {
+    assert.equal(find('.unsaved').length, 0, 'reminder should not have the unsaved class yet');
+  });
+
+  fillIn('.edit-reminder-title', 'Practice es6');
+
+  andThen(function() {
+    assert.equal(find('.unsaved').length, 1, 'reminder being edited will now have the unsaved class');
+  });
+
+  click('.spec-edit-save-btn');
+
+  andThen(function() {
+    assert.equal(find('.unsaved').length, 0, 'reminder should no longer have the unsaved class');
+  });
+});
