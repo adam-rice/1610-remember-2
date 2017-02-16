@@ -3,7 +3,7 @@
 {{#if model}}
   {{#each model as |reminder|}}
     <ul class='reminders-list'>
-      <li>
+      <li class={{if reminder.hasDirtyAttributes "unsaved"}}>
         {{#link-to 'reminders.reminder' reminder.id}}
           <h3 class='spec-reminder-item'>{{reminder.title}}</h3>
         {{/link-to}}
