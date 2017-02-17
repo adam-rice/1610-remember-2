@@ -215,3 +215,45 @@ test('A visual cue lets the user know they have unsaved changes when editing a s
     assert.equal(find('.unsaved').length, 0, 'reminder should no longer have the unsaved class');
   });
 });
+
+test('clicking the X reminder on the cardbutton removes a reminder', function(assert){
+
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+  });
+
+  fillIn('.new-reminder-title', 'Learn Ember');
+  click('.spec-add-new');
+
+  click('.spec-reminder-item:first');
+  andThen(function() {
+    assert.equal(currentURL(), '/reminders/1');
+  });
+
+  click('#spec-remove-reminder');
+  andThen(function(){
+    assert.equal(find('.spec-reminder-item').length, 0);
+  });
+});
+
+
+test('clicking the X reminder button on a link removes a reminder', function(assert){
+
+  visit('/');
+  click('.spec-add-new-form');
+
+  andThen(function(){
+    assert.equal(currentURL(),'/reminders/new');
+  });
+
+  fillIn('.new-reminder-title', 'Learn Ember');
+  click('.spec-add-new');
+
+  click('.spec-remove-reminder');
+  andThen(function(){
+    assert.equal(find('.spec-reminder-item').length, 0);
+  });
+});
